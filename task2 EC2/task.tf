@@ -1,12 +1,10 @@
 provider "aws" {
-  region = "us-east-1"   # Change region if needed
+  region = "us-east-1"  
 }
-
-# Security Group allowing SSH and HTTP
 resource "aws_security_group" "resume_sg" {
   name        = "resume-sg"
   description = "Allow SSH and HTTP"
-  vpc_id      = "vpc-074ac7631089dd05d"  # Replace with your VPC ID
+  vpc_id      = "vpc-074ac7631089dd05d" 
 
   ingress {
     description = "SSH"
@@ -32,12 +30,12 @@ resource "aws_security_group" "resume_sg" {
   }
 }
 
-# EC2 Instance
+EC2 Instance
 resource "aws_instance" "resume_ec2" {
-  ami                         = "ami-0fa3fe0fa7920f68e"  # Amazon Linux 2023
+  ami                         = "ami-0fa3fe0fa7920f68e" 
   instance_type               = "t3.micro"
-  key_name                    = "resume-key"            # Replace with your key pair name
-  subnet_id                   = "subnet-0b45b9d21b42a812b"  # Replace with your public subnet
+  key_name                    = "resume-key"           
+  subnet_id                   = "subnet-0b45b9d21b42a812b" 
   vpc_security_group_ids      = [aws_security_group.resume_sg.id]
   associate_public_ip_address = true
 
@@ -101,3 +99,4 @@ resource "aws_instance" "resume_ec2" {
 output "public_ip" {
   value = aws_instance.resume_ec2.public_ip
 }
+
