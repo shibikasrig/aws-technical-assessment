@@ -1,0 +1,10 @@
+The architecture is built to support 10,000+ concurrent users efficiently.
+Route 53 and CloudFront help users reach the app faster with global content delivery.
+Application Load Balancer (ALB) distributes incoming traffic across multiple servers.
+AWS WAF protects the application from common web attacks and threats.
+EC2 instances run in private subnets for security and form the main application layer.
+An Auto Scaling Group automatically adds or removes EC2 servers based on traffic load.
+ElastiCache (Redis) speeds up the application by caching frequently used data.
+RDS/Aurora stores the main application data reliably with multi-AZ support.
+Security Groups and NACLs control and filter traffic for each layer to ensure safety.
+CloudWatch monitors system health, logs, performance, and sends alerts when needed.
