@@ -23,7 +23,7 @@ Reasoning:
 
 3️)Screenshots to Include
 
-Create a folder:
+Created a folder:
 /task1-vpc-networking/screenshots/
 Add:
 VPC
@@ -52,10 +52,10 @@ The website was verified to be publicly accessible over port 80 using the instan
 
 2️)Required Screenshots
 
-Add folder:
+Added folder:
 /task2-ec2-static-website/screenshots/
 
-Include:
+Included:
 EC2 instance details
 Security Group inbound rules
 Website loaded in browser using Public IP
@@ -64,16 +64,26 @@ Website loaded in browser using Public IP
 
 Folder: /task2-ec2-static-website
 
-Include:
+Included:
 main.tf
 userdata.sh (optional)
 README.md
 
+Task 4 — Billing & Free Tier Cost Monitoring
+
+1) Brief Explanation
+In this task, I set up AWS cost monitoring to make sure I don’t accidentally exceed the Free Tier limits. I created a CloudWatch Billing Alarm that sends me a notification when my estimated monthly cost reaches ₹100. This helps me track any unexpected usage in advance. I also enabled AWS Free Tier usage alerts so that I get notified whenever my free tier limits are close to being used up. These two alerts help beginners like me stay safe from sudden bill increases caused by forgotten resources or misconfigurations.
+
+2) Required Screenshots
+Screenshot of the CloudWatch Billing Alarm
+Screenshot of the Free Tier Usage Alerts page
+
  Task 5 — Scalable AWS Architecture (draw.io Diagram)
+ 
 1️)Brief Architecture Explanation 
 The architecture is designed for a highly scalable web application supporting 10,000+ concurrent users. Traffic enters through an Internet-facing Application Load Balancer (ALB) placed in public subnets. The ALB distributes traffic across an Auto Scaling Group (ASG) deployed across multiple private subnets to ensure high availability. Application state is stored in an RDS/Aurora database, while caching is handled by ElastiCache Redis for high-speed performance. Security is enforced using Security Groups, Network ACLs, and optionally AWS WAF. Observability is achieved using CloudWatch metrics, logs, and alarms, ensuring real-time monitoring and auto-healing.
- Diagram Upload
-Place your exported .png or .pdf here:
+
+ Diagram Uploaded
 /task5-architecture-diagram/architecture.png
 
  
