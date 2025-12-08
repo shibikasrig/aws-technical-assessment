@@ -1,0 +1,17 @@
+Brief Explanation of High Availability Architecture & Traffic Flow
+
+For Task 3, the application architecture was upgraded to a highly available setup by
+introducing an Internet-facing Application Load Balancer (ALB) & an Auto Scaling 
+Group (ASG). The EC2 instances were moved to private subnets for better security, 
+ensuring they are not directly reachable from the internet. A Launch Template was 
+created to define the instance configuration, and the ASG uses this template to 
+automatically launch EC2 instances across multiple Availability Zones.
+
+The ALB placed in public subnets receives all incoming requests from the internet. 
+It forwards traffic to a Target Group, which routes the requests to EC2 instances 
+running in private subnets. If any instance becomes unhealthy or fails, the ALB 
+automatically stops sending traffic to it, and the ASG replaces it with a new instance.
+This setup ensures continuous availability, fault tolerance, and automatic scaling based on demand.
+
+Traffic Flow:
+Internet → ALB (public subnets) → Target Group → EC2 instances (private subnets).
