@@ -1,0 +1,15 @@
+a) Why cost monitoring is important for beginners
+
+For me as a beginner, cost monitoring is important because I’m still learning how AWS pricing works, 
+and it’s very easy to leave something running without realising it. A small mistake like keeping an
+EC2 instance or NAT Gateway active can unexpectedly increase the bill. By setting up alerts, I can 
+keep track of my usage and make sure I don’t cross the Free Tier limits. It also gives me confidence 
+that I’m in control of my spending while practising and experimenting with AWS services.
+
+b) What causes sudden increases in AWS bills
+
+From my experience, AWS bills usually increase suddenly when resources run in the background without
+us noticing. Things like EC2 instances, EBS volumes, NAT Gateways, or data transfer can silently
+increase costs if they are not stopped. Misconfigurations or accidentally deploying resources in
+multiple Availability Zones can also lead to higher charges. Basically, whenever something keeps
+running for a long time or scales unexpectedly, the bill can shoot up.
