@@ -4,10 +4,12 @@ This repository contains Infrastructure-as-Code (IaC) and documentation for sele
 Included tasks:
  Task 1 – VPC Networking
  Task 2 – EC2 Static Website Hosting
+ Task 3 – High Availability + Auto Scaling
+ Task 4 — Billing & Free Tier Cost Monitoring
  Task 5 – AWS Scalable Architecture Diagram
+ 
  Task 1 — AWS VPC Networking & Subnetting
 1️)Brief Explanation of VPC & Subnet Design
-
 I created a custom VPC named Shibikasri_G_VPC with a CIDR block of 10.0.0.0/16 to allow a large and flexible private IP range for future scaling. Inside the VPC, I designed two public and two private subnets, each placed across two different Availability Zones for high availability. The public subnets were routed to an Internet Gateway (IGW) to allow inbound and outbound internet access. The private subnets were configured to use a NAT Gateway placed in a public subnet so they can reach the internet securely without exposing their instances publicly. Separate route tables were created and associated with the respective subnets to maintain proper and secure routing.
 
 2️)CIDR Ranges Used & Rationale
@@ -34,13 +36,8 @@ Internet Gateway
 NAT Gateway
 
 4️)Terraform Code Location
-
 Folder: /task1-vpc-networking
-Files:
-main.tf
-variables.tf
-outputs.tf
-README.md
+
 
  Task 2 — EC2 Static Website Hosting (Nginx Resume Site)
 1️)Brief Explanation 
@@ -61,13 +58,26 @@ Security Group inbound rules
 Website loaded in browser using Public IP
 
 3️)Terraform / Setup Script
-
 Folder: /task2-ec2-static-website
 
-Included:
-main.tf
-userdata.sh (optional)
-README.md
+Task 3 – High Availability + Auto Scaling
+Overview
+In this task, the infrastructure was upgraded to a highly available and fault-tolerant architecture using an Application Load Balancer (ALB) and an Auto Scaling Group (ASG). The EC2 instances were moved into private subnets to enhance security, ensuring they are not directly exposed to the internet. The ALB was deployed in public subnets to receive incoming traffic and forward it to the backend instances through a target group.
+
+Brief Explanation (4–6 lines)
+The application was migrated to a High Availability architecture by introducing an Internet-facing Application Load Balancer (ALB) and configuring an Auto Scaling Group (ASG). A Launch Template was created to define the EC2 configuration, and the ASG uses this template to automatically deploy instances across multiple Availability Zones for redundancy. The EC2 instances were moved to private subnets to improve security while the ALB handles all internet traffic. If an instance becomes unhealthy, the ALB removes it from the target group, and the ASG launches a new healthy instance. This ensures continuous uptime, fault tolerance, and automatic scaling based on demand.
+
+Traffic Flow
+Internet → ALB (Public Subnets) → Target Group → EC2 Instances (Private Subnets)
+
+Steps Performed
+Created public and private subnets across two Availability Zones.
+Deployed an Internet-facing ALB in public subnets.
+Created a Launch Template for EC2 instance configuration.
+Configured an Auto Scaling Group (ASG) using the Launch Template.
+Enabled health checks and attached the ASG to a Target Group.
+Verified that unhealthy instances are automatically replaced.
+Tested traffic distribution across multiple instances.
 
 Task 4 — Billing & Free Tier Cost Monitoring
 
